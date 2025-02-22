@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepfake Detector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .upload-section {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+
+        input[type="file"] {
+            margin: 10px 0;
+            width: 100%;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            display: none;
+            padding: 10px;
+            border-radius: 8px;
+            max-width: 95%; /* Ensure it fits the viewport */
+        }
+
+        .success {
+            background-color: #e9f7ef;
+            color: #155724;
+            border: 1px solid #28a745;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .info {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+        .result-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
+    width: 80%;
+}
+
+.result {
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    background-color: #4caf50; /* Green for success */
+    border-radius: 10px;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.result.error {
+    background-color: #f44336; /* Red for errors */
+}
+
+.result.info {
+    background-color: #ff9800; /* Orange for info */
+}
+
+.heatmap {
+    margin-top: 20px;
+    max-width: 100%;
+    height: auto; /* Responsive height */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Deepfake Detection</h1>
+        <p>Upload two files (image or video) to analyze for deepfake.</p>
+    </header>
+    <div class="upload-section">
+        <form id="deepfakeForm">
+            <label for="originalFile">Original File:</label>
+            <input type="file" id="originalFile" accept="video/*,image/*" required />
+            <label for="testFile">Test File:</label>
+            <input type="file" id="testFile" accept="video/*,image/*" required />
+            <button type="submit" class="btn">Analyze</button>
+        </form>
+        <div id="result" class="result">
+        </div>
+    </div>
+    <canvas id="heatmap" class=""heatmap"></canvas>
+    <script src="js/face-api.js"></script>
+    <script src="js/video-deepfake.js"></script>
+    <script src="js/chart.js"></script>
+    <script src="js/chartjs-chart-matrix.js"></script>
+</body>
+</html>
